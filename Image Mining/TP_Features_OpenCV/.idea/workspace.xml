@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dbc9c778-93cd-47ee-95b1-25f2e9c3dc7e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1VFR1ntVgyllPoggYQnxwWawFpM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Temp\Dossiers_Cours\Image Mining\TP_Features_OpenCV" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Features_Match_RatioTest">
+    <configuration name="Features_Detect" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TP_Features_OpenCV" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Features_Detect.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Features_Match_CrossCheck" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TP_Features_OpenCV" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Features_Match_CrossCheck.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Features_Match_FLANN" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TP_Features_OpenCV" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Features_Match_FLANN.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Features_Match_RatioTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TP_Features_OpenCV" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Features_Match_RatioTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Harris" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TP_Features_OpenCV" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Harris.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="TP_Features_OpenCV" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Features_Match_RatioTest" />
+        <item itemvalue="Python.Features_Match_FLANN" />
+        <item itemvalue="Python.Features_Match_CrossCheck" />
+        <item itemvalue="Python.Features_Detect" />
+        <item itemvalue="Python.Harris" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dbc9c778-93cd-47ee-95b1-25f2e9c3dc7e" name="Default Changelist" comment="" />
+      <created>1576846644010</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576846644010</updated>
+      <workItem from="1576846657033" duration="2571000" />
+      <workItem from="1576852911767" duration="368000" />
+      <workItem from="1577648997166" duration="72000" />
+      <workItem from="1577649334336" duration="228000" />
+      <workItem from="1577899043642" duration="24152000" />
+      <workItem from="1578054401777" duration="20391000" />
+      <workItem from="1578130498334" duration="19785000" />
+      <workItem from="1578730892840" duration="91000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="210" y="-1255" width="1089" height="618" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577899602302">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state x="210" y="-1255" width="1089" height="618" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1577899602302" />
+    <state x="140" y="91" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1368.872@0.0.1368.872" timestamp="1576852855465" />
+    <state x="705" y="-1148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1577649031827">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state x="705" y="-1148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1577649031827" />
+    <state x="805" y="-1128" key="FileChooserDialogImpl" timestamp="1578730977486">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state x="805" y="-1128" key="FileChooserDialogImpl/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578730977486" />
+    <state width="2005" height="376" key="GridCell.Tab.0.bottom" timestamp="1578175400402">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.0.bottom/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578175400402" />
+    <state width="663" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1576868180926" />
+    <state width="2005" height="376" key="GridCell.Tab.0.center" timestamp="1578175400401">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.0.center/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578175400401" />
+    <state width="663" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1576868180925" />
+    <state width="2005" height="376" key="GridCell.Tab.0.left" timestamp="1578175400397">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.0.left/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578175400397" />
+    <state width="663" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1576868180925" />
+    <state width="2005" height="376" key="GridCell.Tab.0.right" timestamp="1578175400402">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.0.right/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578175400402" />
+    <state width="663" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1576868180926" />
+    <state width="2005" height="376" key="GridCell.Tab.1.bottom" timestamp="1578175400403">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.1.bottom/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578175400403" />
+    <state width="2005" height="376" key="GridCell.Tab.1.center" timestamp="1578175400403">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.1.center/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578175400403" />
+    <state width="2005" height="376" key="GridCell.Tab.1.left" timestamp="1578175400403">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.1.left/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578175400403" />
+    <state width="2005" height="376" key="GridCell.Tab.1.right" timestamp="1578175400403">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.1.right/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1578175400403" />
+    <state x="520" y="-1325" key="SettingsEditor" timestamp="1577901261095">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state x="520" y="-1325" key="SettingsEditor/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1577901261095" />
+    <state x="718" y="-1286" width="611" height="804" key="find.popup" timestamp="1577979176687">
+      <screen x="0" y="-1440" width="2048" height="1112" />
+    </state>
+    <state x="718" y="-1286" width="611" height="804" key="find.popup/0.0.1368.872/0.-1440.2048.1112@0.-1440.2048.1112" timestamp="1577979176687" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TP_Features_OpenCV$Harris.coverage" NAME="Harris Coverage Results" MODIFIED="1578139246765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TP_Features_OpenCV$Convolutions.coverage" NAME="Convolutions Coverage Results" MODIFIED="1577997118124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

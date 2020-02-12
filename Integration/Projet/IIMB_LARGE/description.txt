@@ -1,0 +1,1550 @@
+==================================
+TEST CASE 001
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 002
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 003
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.3
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 004
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 005
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsDeletion	0.4
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 006
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 007
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.3
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 008
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 009
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsDeletion	0.4
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 010
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsDeletion	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 011
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 012
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 013
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsAddition	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 014
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsDeletion	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 015
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 016
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsAddition	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 017
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 018
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.3
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 019
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	TokenShuffle	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 020
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	BlankCharsAddition	0.5
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 021
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.2
+Add properties	1.0	1
+Split property values	0.5	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 022
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	0.5	1
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 023
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	1.0	0
+Split property values	0.5	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 024
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	0.0	2
+Split property values	0.5	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 025
+==================================
+Data Values
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	1.0	1
+Split property values	0.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 026
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	1.0	3
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 027
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.2
+Add properties	0.5	0
+Split property values	0.5	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 028
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.0
+Add properties	1.0	2
+Split property values	0.5	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 029
+==================================
+Data Values
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	0.5	3
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 030
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	0.5	0
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 031
+==================================
+Data Values
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	1.0	0
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 032
+==================================
+Data Values
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	0.5	1
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 033
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.0
+Add properties	0.5	0
+Split property values	0.5	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 034
+==================================
+Data Values
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	1.0	1
+Split property values	0.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 035
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.2
+Add properties	1.0	3
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 036
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.2
+Add properties	1.0	3
+Split property values	0.5	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 037
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.2
+Add properties	0.5	0
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 038
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.5
+Add properties	1.0	0
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 039
+==================================
+Data Values
+Structural
+Change property depth	1.0
+Delete properties	0.0
+Add properties	1.0	2
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 040
+==================================
+Data Values
+Structural
+Change property depth	0.5
+Delete properties	0.0
+Add properties	1.0	3
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 041
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	0.5
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 042
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	0.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 043
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 044
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.5
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 045
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	0.5
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 046
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 047
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	0.5
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 048
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.5
+Invert obj assertions	1.0
+Property hierarchy	0.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 049
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.5
+Invert obj assertions	0.5
+Property hierarchy	0.0
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 050
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.5
+Invert obj assertions	0.5
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 051
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 052
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	0.5
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 053
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	1.0
+Property hierarchy	0.5
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 054
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.5
+Property hierarchy	0.5
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 055
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.5
+Invert obj assertions	1.0
+Property hierarchy	0.5
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 056
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	0.0
+Property hierarchy	1.0
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 057
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	1.0
+Invert obj assertions	0.5
+Property hierarchy	0.5
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 058
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	0.0
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 059
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.5
+Invert obj assertions	0.0
+Property hierarchy	1.0
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 060
+==================================
+Data Values
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.0	0
+Split property values	0.0	0
+Logical
+Delete class assertions	0.5
+Invert obj assertions	0.5
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 061
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsDeletion	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	0.0	0
+Split property values	1.0	2
+Logical
+Delete class assertions	0.5
+Invert obj assertions	1.0
+Property hierarchy	0.5
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 062
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsAddition	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+Structural
+Change property depth	0.5
+Delete properties	0.0
+Add properties	0.5	3
+Split property values	0.5	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 063
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.3
+Structural
+Change property depth	1.0
+Delete properties	0.0
+Add properties	0.5	3
+Split property values	0.5	2
+Logical
+Delete class assertions	0.5
+Invert obj assertions	0.0
+Property hierarchy	0.5
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 064
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	TokenShuffle	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	1.0	2
+Split property values	1.0	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	0.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 065
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsAddition	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	0.0	0
+Split property values	0.5	2
+Logical
+Delete class assertions	0.5
+Invert obj assertions	1.0
+Property hierarchy	0.5
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 066
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	0.5	0
+Split property values	0.5	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 067
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	BlankCharsAddition	0.5
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	0.5	1
+Split property values	0.5	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	0.5
+Property hierarchy	0.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 068
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	BlankCharsAddition	0.5
+Structural
+Change property depth	0.0
+Delete properties	0.5
+Add properties	1.0	2
+Split property values	1.0	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	0.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 069
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	1.0	0
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	1.0
+Property hierarchy	0.5
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 070
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	BlankCharsAddition	0.5
+Structural
+Change property depth	1.0
+Delete properties	0.0
+Add properties	1.0	1
+Split property values	1.0	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	0.5
+Property hierarchy	0.5
+Assert in disjoint classes	0.0
+
+==================================
+TEST CASE 071
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsDeletion	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsDeletion	0.4
+Structural
+Change property depth	0.5
+Delete properties	0.2
+Add properties	1.0	2
+Split property values	0.0	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	0.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 072
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	1.0
+Delete properties	0.2
+Add properties	0.0	1
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	0.0
+Property hierarchy	1.0
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 073
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.3
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	0.5	0
+Split property values	1.0	2
+Logical
+Delete class assertions	0.5
+Invert obj assertions	0.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 074
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsAddition	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.3
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	1.0	0
+Split property values	1.0	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	0.5
+Property hierarchy	0.5
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 075
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	BlankCharsAddition	0.5
+Structural
+Change property depth	0.0
+Delete properties	0.0
+Add properties	0.5	0
+Split property values	0.5	2
+Logical
+Delete class assertions	0.5
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 076
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	TokenShuffle	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	TokenShuffle	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsDeletion	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	1.0	1
+Split property values	1.0	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 077
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsDeletion	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsModifier	0.5
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	RandomCharsDeletion	0.4
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	1.0	0
+Split property values	1.0	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	0.5
+Property hierarchy	1.0
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 078
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	SynonymChange	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	2
+http://oaei.ontologymatching.org/2010/IIMBTBOX/religion	SynonymChange	1.0
+Structural
+Change property depth	1.0
+Delete properties	0.5
+Add properties	1.0	0
+Split property values	0.5	2
+Logical
+Delete class assertions	0.5
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
+==================================
+TEST CASE 079
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/size	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/date_of_birth	ChangeDateFormat	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	1.0	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/amount	ChangeNumberFormat	0.5	0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	SynonymChange	0.8
+http://oaei.ontologymatching.org/2010/IIMBTBOX/currency	RandomCharsModifier	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/name	NameStyleAbbreviation	1	0
+Structural
+Change property depth	1.0
+Delete properties	0.0
+Add properties	1.0	3
+Split property values	1.0	2
+Logical
+Delete class assertions	0.0
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	0.5
+
+==================================
+TEST CASE 080
+==================================
+Data Values
+http://oaei.ontologymatching.org/2010/IIMBTBOX/form_of_government	BlankCharsDeletion	1.0
+http://oaei.ontologymatching.org/2010/IIMBTBOX/calling_code	ChangeNumberFormat	0.4	1
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsAddition	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/article	RandomCharsDeletion	0.3
+http://oaei.ontologymatching.org/2010/IIMBTBOX/gender	ChangeGenderFormat
+Structural
+Change property depth	0.5
+Delete properties	0.5
+Add properties	0.0	2
+Split property values	1.0	2
+Logical
+Delete class assertions	1.0
+Invert obj assertions	1.0
+Property hierarchy	1.0
+Assert in disjoint classes	1.0
+
