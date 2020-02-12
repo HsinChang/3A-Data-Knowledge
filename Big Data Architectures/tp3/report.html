@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Big Data Architecture Lab 3</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="big-data-architecture-lab-3">Big Data Architecture Lab 3</h1>
+<h3 id="zhang-xin">ZHANG Xin</h3>
+<h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="#task-1-data-import">Task 1: data import</a>
+<ul>
+<li><a href="#1-import-the-files">1. import the files</a></li>
+<li><a href="#2-model-data-as-a-property-graph">2. Model data as a property graph</a></li>
+</ul>
+</li>
+<li><a href="#task-2-data-querying-and-analysis">Task 2: data querying and analysis</a>
+<ul>
+<li><a href="#1-find-the-number-of-incidents-by-drug-violation-offense-group">1. Find the number of incidents by <code>Drug Violation</code> offense group.</a></li>
+<li><a href="#2-find-the-names-of-offense-codes-for-incidents-of-investigate-person-offense-group">2. Find the names of offense codes for incidents of <code>Investigate Person</code> offense group.</a></li>
+<li><a href="#3-profile-and-explain-two-above-queries">3. <code>PROFILE</code> and <code>EXPLAIN</code> two above queries.</a></li>
+<li><a href="#4-add-indexes-on-your-graph-what-are-the-changes-in-the-plans">4. Add indexes on your graph. What are the changes in the plans?</a></li>
+<li><a href="#5-explore-a-graph-and-write-a-query-of-your-choice-using-order-by-clause">5. Explore a graph, and write a query of your choice using ORDER BY clause.</a>
+<ul>
+<li><a href="#explore-a-graph">Explore a graph</a></li>
+<li><a href="#a-query-using-order-by-clause">A query using <code>ORDER BY</code> clause.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#task-3-results-visualization">Task 3: results visualization</a></li>
+</ul>
+<h2 id="task-1-data-import">Task 1: data import</h2>
+<h3 id="1-import-the-files">1. import the files</h3>
+<p>Command:</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">LOAD</span> CSV <span class="hljs-keyword">WITH</span> HEADERS <span class="hljs-keyword">FROM</span> <span class="hljs-string">"file:///boston-crime-incident-reports-10k.csv"</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">row</span>
+<span class="hljs-keyword">CREATE</span> (reports:Reports {incidentNumber: row.INCIDENT_NUMBER, offenseCode: row.OFFENSE_CODE, offenseCodeGroup: row.OFFENSE_CODE_GROUP});
+</div></code></pre>
+<p>Result:</p>
+<pre><code><div>Added 9999 labels, created 9999 nodes, set 29997 properties, completed after 649 ms.
+</div></code></pre>
+<p>Commande:</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">LOAD</span> CSV <span class="hljs-keyword">WITH</span> HEADERS <span class="hljs-keyword">FROM</span> <span class="hljs-string">"file:///boston-offense-codes-lookup.csv"</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">row</span>
+<span class="hljs-keyword">MERGE</span> (lookup:Lookup {code: row.CODE, <span class="hljs-keyword">name</span>: row.NAME});
+</div></code></pre>
+<p>Result:</p>
+<pre><code><div>Added 576 labels, created 576 nodes, set 1152 properties, completed after 72 ms.
+</div></code></pre>
+<h3 id="2-model-data-as-a-property-graph">2. Model data as a property graph</h3>
+<p>Create the incident number to name relation</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">LOAD</span> CSV <span class="hljs-keyword">WITH</span> HEADERS <span class="hljs-keyword">FROM</span> <span class="hljs-string">"file:///boston-offense-codes-lookup.csv"</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">row</span>
+<span class="hljs-keyword">MATCH</span> (code:Reports {offenseCode: row.CODE})
+<span class="hljs-keyword">MATCH</span> (<span class="hljs-keyword">name</span>:Lookup {<span class="hljs-keyword">name</span>: row.NAME})
+<span class="hljs-keyword">MERGE</span> (code)-[ni:NAME_IS]-&gt;(<span class="hljs-keyword">name</span>);
+</div></code></pre>
+<p>A sample graph is shown below.</p>
+<p><img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\2019-10-20_142457.png" alt="Sample Graph"></p>
+<p><strong>Comments:</strong> As the main table (file:///boston-crime-incident-reports-10k.csv) is obviously not in the <a href="https://en.wikipedia.org/wiki/Third_normal_form">third normal form</a>, a property graph as shown in the example is not achievable by simply decalring the relations. The only realtion we can build now is the incident number to name relation.</p>
+<h2 id="task-2-data-querying-and-analysis">Task 2: data querying and analysis</h2>
+<h3 id="1-find-the-number-of-incidents-by-drug-violation-offense-group">1. Find the number of incidents by <code>Drug Violation</code> offense group.</h3>
+<pre><code class="language-sql"><div>MATCH (dv:Reports {offenseCodeGroup: 'Drug Violation'})
+RETURN COUNT(dv) as count;
+</div></code></pre>
+<pre><code><div>╒═══════╕
+│&quot;count&quot;│
+╞═══════╡
+│439    │
+└───────┘
+</div></code></pre>
+<h3 id="2-find-the-names-of-offense-codes-for-incidents-of-investigate-person-offense-group">2. Find the names of offense codes for incidents of <code>Investigate Person</code> offense group.</h3>
+<pre><code class="language-sql"><div>MATCH (dv:Reports {offenseCodeGroup: 'Investigate Person'})-[ni:NAME_IS]-&gt;(nm)
+return DISTINCT dv.offenseCode, nm.name;
+</div></code></pre>
+<p>result</p>
+<pre><code><div>╒════════════════╤════════════════════╕
+│&quot;dv.offenseCode&quot;│&quot;nm.name&quot;           │
+╞════════════════╪════════════════════╡
+│&quot;3115&quot;          │&quot;INVESTIGATE PERSON&quot;│
+└────────────────┴────────────────────┘
+</div></code></pre>
+<h3 id="3-profile-and-explain-two-above-queries">3. <code>PROFILE</code> and <code>EXPLAIN</code> two above queries.</h3>
+<pre><code class="language-sql"><div>PROFILE MATCH (dv:Reports {offenseCodeGroup: 'Drug Violation'})
+RETURN COUNT(dv) as count;
+</div></code></pre>
+<p><img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\2019-10-20_145836.png" alt="Plan 2.1.a"></p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">EXPLAIN</span> <span class="hljs-keyword">MATCH</span> (dv:Reports {offenseCodeGroup: <span class="hljs-string">'Drug Violation'</span>})
+<span class="hljs-keyword">RETURN</span> <span class="hljs-keyword">COUNT</span>(dv) <span class="hljs-keyword">as</span> <span class="hljs-keyword">count</span>;
+</div></code></pre>
+<p><img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\2019-10-20_150104.png" alt="Plan 2.1.b"></p>
+<pre><code class="language-sql"><div>PROFILE MATCH (dv:Reports {offenseCodeGroup: 'Investigate Person'})-[ni:NAME_IS]-&gt;(nm)
+return DISTINCT dv.offenseCode, nm.name;
+</div></code></pre>
+<p><img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\2019-10-20_150421.png" alt="Plan 2.2.a"></p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">EXPLAIN</span> <span class="hljs-keyword">MATCH</span> (dv:Reports {offenseCodeGroup: <span class="hljs-string">'Investigate Person'</span>})-[ni:NAME_IS]-&gt;(nm)
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">DISTINCT</span> dv.offenseCode, nm.name;
+</div></code></pre>
+<p><img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\2019-10-20_150546.png" alt="Plan 2.2.b"></p>
+<h3 id="4-add-indexes-on-your-graph-what-are-the-changes-in-the-plans">4. Add indexes on your graph. What are the changes in the plans?</h3>
+<pre><code class="language-sql"><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> <span class="hljs-keyword">ON</span> :Reports(offenseCodeGroup);
+Added 1 index, completed after 217 ms.
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> <span class="hljs-keyword">ON</span> :Reports(offenseCode);
+Added 1 index, completed after 4 ms.
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> <span class="hljs-keyword">ON</span> :Lookup(<span class="hljs-keyword">name</span>);
+Added 1 index, completed after 4 ms.
+</div></code></pre>
+<p>So we redo <code>PROFILE</code> for the two queries.</p>
+<pre><code class="language-sql"><div>PROFILE MATCH (dv:Reports {offenseCodeGroup: 'Drug Violation'})
+RETURN COUNT(dv) as count;
+</div></code></pre>
+<p><img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\2019-10-20_151452.png" alt="Plan 2.4.a"></p>
+<pre><code class="language-sql"><div>PROFILE MATCH (dv:Reports {offenseCodeGroup: 'Investigate Person'})-[ni:NAME_IS]-&gt;(nm)
+return DISTINCT dv.offenseCode, nm.name;
+</div></code></pre>
+<p><img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\2019-10-20_151647.png" alt="Plan 2.4.b"></p>
+<p>From above, we can easily see that after having added indexs, the <code>Filter</code> step is no longer needed, and the lookup is much quicker now.</p>
+<h3 id="5-explore-a-graph-and-write-a-query-of-your-choice-using-order-by-clause">5. Explore a graph, and write a query of your choice using ORDER BY clause.</h3>
+<h4 id="explore-a-graph">Explore a graph</h4>
+<pre><code class="language-sql"><div>MATCH path = (b:Reports)-[ni:NAME_IS]-&gt;(nm)
+WHERE b.offenseCode = "3112"
+RETURN path;
+</div></code></pre>
+<p><img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\2019-10-20_152940.png" alt="2.5.1"></p>
+<h4 id="a-query-using-order-by-clause">A query using <code>ORDER BY</code> clause.</h4>
+<pre><code class="language-sql"><div>MATCH(tp:Reports)-[ni:NAME_IS]-&gt;(nm)
+RETURN DISTINCT tp.offenseCode, nm.name, COUNT(*) AS count
+ORDER BY count DESC
+LIMIT 10;
+</div></code></pre>
+<p>result</p>
+<pre><code><div>╒════════════════╤═══════════════════════════════════════╤═══════╕
+│&quot;tp.offenseCode&quot;│&quot;nm.name&quot;                              │&quot;count&quot;│
+╞════════════════╪═══════════════════════════════════════╪═══════╡
+│&quot;3831&quot;          │&quot;M/V - LEAVING SCENE - PROPERTY DAMAGE&quot;│1002   │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;3006&quot;          │&quot;SICK/INJURED/MEDICAL - PERSON&quot;        │712    │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;3115&quot;          │&quot;INVESTIGATE PERSON&quot;                   │606    │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;802&quot;           │&quot;ASSAULT SIMPLE - BATTERY&quot;             │496    │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;802&quot;           │&quot;ASSAULT &amp; BATTERY&quot;                    │496    │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;1402&quot;          │&quot;VANDALISM&quot;                            │465    │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;3301&quot;          │&quot;VERBAL DISPUTE&quot;                       │421    │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;3410&quot;          │&quot;TOWED MOTOR VEHICLE&quot;                  │379    │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;3114&quot;          │&quot;INVESTIGATE PROPERTY&quot;                 │372    │
+├────────────────┼───────────────────────────────────────┼───────┤
+│&quot;3201&quot;          │&quot;PROPERTY - LOST&quot;                      │321    │
+└────────────────┴───────────────────────────────────────┴───────┘
+</div></code></pre>
+<h2 id="task-3-results-visualization">Task 3: results visualization</h2>
+<p>the result PNG file (<code>graph.png</code>) is shown below
+<img src="file:///c:\Users\Hsin Chang\Desktop\Temp\Dossiers_Cours\Big Data Architectures\tp3\graph.png" alt=""></p>
+<p><strong>Conclusions</strong>
+The graph built from <code>CSV</code> tables will not have a great readability unless all tables imported are already in the <a href="https://en.wikipedia.org/wiki/Third_normal_form">third normal form</a>. Likewisely, we need to form the nodes into the <a href="https://en.wikipedia.org/wiki/Third_normal_form">third normal form</a> in order to build highly readable graphs.</p>
+
+    </body>
+    </html>

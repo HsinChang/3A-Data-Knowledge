@@ -1,0 +1,21 @@
+<h1>Subscriber</h1>
+{{#if error}} <span>{{error}}</span>{{/if}}
+<form method="POST" action="/user/borrow">
+  <div class="form-group">
+    <label>Borrow book</label>
+    <input type="text" name="id" class="form-control" placeholder="book id">
+  </div>
+  <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+<form method="POST" action="/user/return">
+    <div class="form-group">
+        <label>Return book</label>
+        <input type="text" name="id" class="form-control" placeholder="book id">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+<div id = "info_channel">
+        <textarea rows="15" cols = "80" id = "cnlinfo">
+            {{info}}
+        </textarea>
+</div>

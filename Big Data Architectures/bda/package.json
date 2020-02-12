@@ -1,0 +1,19 @@
+{
+  "name": "bda",
+  "version": "1.0.0",
+  "description": "Big Data Architecture Lab 1",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodejs app.js"
+  },
+  "author": "Xin Zhang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "method-override": "^3.0.0",
+    "redis": "^2.8.0",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

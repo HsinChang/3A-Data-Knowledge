@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Big Data Architecture Lab 4</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="big-data-architecture-lab-4">Big Data Architecture Lab 4</h1>
+<h3 id="zhang-xin">ZHANG Xin</h3>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#task-1-querying-mongodb-and-saving-results-in-apache-parquet-le-format">Task 1: querying MongoDB and saving results in Apache Parquet le format</a>
+<ul>
+<li><a href="#1-set-up-mongodb-plugin">1. Set up MongoDB plugin</a></li>
+<li><a href="#2-import-structures-egalite-femmeshommesjson-dataset-into-mongodb">2. Import <code>structures-egalite-femmeshommes.json</code>dataset into MongoDB.</a></li>
+<li><a href="#3-the-number-of-organizations-working-for-gender-equality-in-toulouse-by-their-zip-code-in-the-descending-order-of-size">3. the number of organizations working for gender equality in Toulouse by their zip code in the descending order of size.</a></li>
+<li><a href="#4-analyze-the-result-of-the-aggregation-query-is-the-organizations-zip-codes-data-complete">4. Analyze the result of the aggregation query, Is the organizations' zip codes data complete?</a></li>
+<li><a href="#5-save-the-result-of-the-query-into-a-parquet-file-in-tmp-workspace-using-a-default-dfs-plugin">5. Save the result of the query into a Parquet file in <code>tmp</code> workspace using a default <code>dfs</code> plugin.</a></li>
+<li><a href="#6-run-a-query-to-display-the-content-of-the-parquet-fi-le">6. Run a query to display the content of the Parquet file.</a></li>
+</ul>
+</li>
+<li><a href="#task-2-importing-data-in-csv-and-joining-with-data-in-postgres">Task 2: importing data in CSV and joining with data in Postgres</a>
+<ul>
+<li><a href="#1-import-boston-crime-incident-reports-10kcsv-dataset-into-postgres">1. Import boston-crime-incident-reports-10k.csv dataset into Postgres.</a></li>
+<li><a href="#2-set-up-postgres-plugin">2. Set up Postgres plugin</a></li>
+<li><a href="#3-run-a-query-to-display-the-content-of-the-dataset">3. Run a query to display the content of the dataset</a></li>
+<li><a href="#4-run-a-query-to-display-the-content-of-boston-offense-codes-lookupcsv-fi-le-in-apache-drillwithout-loading-it-to-postgres">4. Run a query to display the content of <code>boston-offense-codes-lookup.csv</code> file in Apache Drill(without loading it to Postgres).</a></li>
+<li><a href="#5-find-all-the-distinct-street-names-mentioned-in-reports-such-that-their-code-name-in-a-lookup-csv-file-contains-%22fire%22-and-they-refer-to-monday">5. Find all the distinct street names mentioned in reports such that their code name in a lookup CSV file contains &quot;FIRE&quot; and they refer to Monday.</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="task-1-querying-mongodb-and-saving-results-in-apache-parquet-file-format">Task 1: querying MongoDB and saving results in Apache Parquet file format</h2>
+<h3 id="1-set-up-mongodb-plugin">1. Set up MongoDB plugin</h3>
+<p>Below are the example quries from the toturials.</p>
+<pre><code class="language-sql"><div>apache drill (mongo.test)&gt; <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> zips <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">10</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+-------+--------------+------------------------+---------+-------+
+|  _id  |     city     |          loc           |   pop   | state |
++-------+--------------+------------------------+---------+-------+
+| 01007 | BELCHERTOWN  | [-72.410953,42.275103] | 10579.0 | MA    |
+| 01001 | AGAWAM       | [-72.622739,42.070206] | 15338.0 | MA    |
+| 01008 | BLANDFORD    | [-72.936114,42.182949] | 1240.0  | MA    |
+| 01010 | BRIMFIELD    | [-72.188455,42.116543] | 3706.0  | MA    |
+| 01011 | CHESTER      | [-72.988761,42.279421] | 1688.0  | MA    |
+| 01012 | CHESTERFIELD | [-72.833309,42.38167]  | 177.0   | MA    |
+| 01020 | CHICOPEE     | [-72.576142,42.176443] | 31495.0 | MA    |
+| 01002 | CUSHMAN      | [-72.51565,42.377017]  | 36963.0 | MA    |
+| 01022 | WESTOVER AFB | [-72.558657,42.196672] | 1764.0  | MA    |
+| 01027 | MOUNT TOM    | [-72.679921,42.264319] | 16864.0 | MA    |
++-------+--------------+------------------------+---------+-------+
+</div></code></pre>
+<pre><code class="language-sql"><div>apache drill (mongo.test)&gt; <span class="hljs-keyword">SELECT</span> city, <span class="hljs-keyword">avg</span>(pop) <span class="hljs-keyword">FROM</span> zips <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> city <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">10</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+--------------+--------------------+
+|     city     |       EXPR<span class="hljs-variable">$1</span>       |
++--------------+--------------------+
+| BELCHERTOWN  | 10579.0            |
+| AGAWAM       | 15338.0            |
+| BLANDFORD    | 1240.0             |
+| BRIMFIELD    | 2441.5             |
+| CHESTER      | 7285.0952380952385 |
+| CHESTERFIELD | 9988.857142857143  |
+| CHICOPEE     | 27445.5            |
+| CUSHMAN      | 18649.5            |
+| WESTOVER AFB | 1764.0             |
+| MOUNT TOM    | 16864.0            |
+</div></code></pre>
+<h3 id="2-import-structures-egalite-femmeshommesjsondataset-into-mongodb">2. Import <code>structures-egalite-femmeshommes.json</code>dataset into MongoDB.</h3>
+<pre><code class="language-bash"><div>&gt; mongoimport --db sef --file structures-egalite-femmeshommes.json --collection sef --port 27017 --jsonArray
+connected to: mongodb://localhost:27017/
+114 document(s) imported successfully. 0 document(s) failed to import.
+</div></code></pre>
+<h3 id="3-the-number-of-organizations-working-for-gender-equality-in-toulouse-by-their-zip-code-in-the-descending-order-of-size">3. the number of organizations working for gender equality in Toulouse by their zip code in the descending order of size.</h3>
+<pre><code class="language-sql"><div>apache drill (mongo.sef)&gt; <span class="hljs-keyword">SELECT</span> s.fields.code_postal <span class="hljs-keyword">AS</span> zip, <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">count</span> <span class="hljs-keyword">FROM</span> sef s <span class="hljs-keyword">WHERE</span> s.fields.commune = <span class="hljs-string">'Toulouse'</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> s.fields.code_postal <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">count</span> <span class="hljs-keyword">DESC</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+---------+-------+
+|   zip   | count |
++---------+-------+
+| null    | 26    |
+| 31100.0 | 21    |
+| 31000.0 | 16    |
+| 31400.0 | 15    |
+| 31300.0 | 13    |
+| 31200.0 | 13    |
+| 31500.0 | 10    |
++---------+-------+
+7 rows selected (0.362 seconds)
+</div></code></pre>
+<h3 id="4-analyze-the-result-of-the-aggregation-query-is-the-organizations-zip-codes-data-complete">4. Analyze the result of the aggregation query, Is the organizations' zip codes data complete?</h3>
+<p>We can see that there is a <code>null</code> value, so the organizations' zip codes data are not complete.</p>
+<h3 id="5-save-the-result-of-the-query-into-a-parquet-file-in-tmp-workspace-using-a-default-dfs-plugin">5. Save the result of the query into a Parquet file in <code>tmp</code> workspace using a default <code>dfs</code> plugin.</h3>
+<pre><code class="language-sql"><div>apache drill (mongo.sef)&gt; <span class="hljs-keyword">alter</span> <span class="hljs-keyword">session</span> <span class="hljs-keyword">set</span> <span class="hljs-string">`store.format`</span>=<span class="hljs-string">'parquet'</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+------+-----------------------+
+|  ok  |        summary        |
++------+-----------------------+
+| <span class="hljs-literal">true</span> | store.format updated. |
++------+-----------------------+
+1 row selected (0.088 seconds)
+</div></code></pre>
+<pre><code class="language-sql"><div>apache drill (mongo.sef)&gt; <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> dfs.tmp.<span class="hljs-string">`/stats/airport_data/`</span> <span class="hljs-keyword">AS</span>
+. . . . . . . .semicolon&gt; <span class="hljs-keyword">SELECT</span> s.fields.code_postal <span class="hljs-keyword">AS</span> <span class="hljs-string">`zip`</span>, <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-string">`count`</span> <span class="hljs-keyword">FROM</span> sef s <span class="hljs-keyword">WHERE</span> s.fields.commune = <span class="hljs-string">'Toulouse'</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> s.fields.code_postal <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">count</span> <span class="hljs-keyword">DESC</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+----------+---------------------------+
+| Fragment | Number of records written |
++----------+---------------------------+
+| 0_0      | 7                         |
++----------+---------------------------+
+1 row selected (1.711 seconds)
+</div></code></pre>
+<h3 id="6-run-a-query-to-display-the-content-of-the-parquet-file">6. Run a query to display the content of the Parquet file.</h3>
+<pre><code class="language-sql"><div>apache drill (mongo.sef)&gt; <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> dfs.<span class="hljs-string">`C:/tmp/stats/airport_data/0_0_0.parquet`</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+---------+-------+
+|   zip   | count |
++---------+-------+
+| null    | 26    |
+| 31100.0 | 21    |
+| 31000.0 | 16    |
+| 31400.0 | 15    |
+| 31300.0 | 13    |
+| 31200.0 | 13    |
+| 31500.0 | 10    |
++---------+-------+
+7 rows selected (0.401 seconds)
+</div></code></pre>
+<h2 id="task-2-importing-data-in-csv-and-joining-with-data-in-postgres">Task 2: importing data in CSV and joining with data in Postgres</h2>
+<h3 id="1-import-boston-crime-incident-reports-10kcsv-dataset-into-postgres">1. Import boston-crime-incident-reports-10k.csv dataset into Postgres.</h3>
+<pre><code class="language-sql"><div>postgres=<span class="hljs-comment"># CREATE DATABASE reports;</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span>
+</div></code></pre>
+<pre><code class="language-bash"><div>postgres=$ \connect reports
+Vous êtes maintenant connecté à la base de données « reports » en tant qu<span class="hljs-string">'utilisateur « postgres ».
+</span></div></code></pre>
+<pre><code class="language-sql"><div>postgres=$ <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> reports(incident_number <span class="hljs-built_in">varchar</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>, offense_code <span class="hljs-built_in">varchar</span>, offense_code_group <span class="hljs-built_in">varchar</span>, offense_description <span class="hljs-built_in">varchar</span>, district <span class="hljs-built_in">varchar</span>, reporting_area <span class="hljs-built_in">varchar</span>, shooting <span class="hljs-built_in">varchar</span>, occurred_on_date <span class="hljs-built_in">varchar</span>, <span class="hljs-keyword">year</span> <span class="hljs-built_in">varchar</span>, <span class="hljs-keyword">month</span> <span class="hljs-built_in">varchar</span>, day_of_week <span class="hljs-built_in">varchar</span>, <span class="hljs-keyword">hour</span> <span class="hljs-built_in">varchar</span>, ucr_part <span class="hljs-built_in">varchar</span>, street <span class="hljs-built_in">varchar</span>, lat <span class="hljs-built_in">varchar</span>, <span class="hljs-keyword">long</span> <span class="hljs-built_in">varchar</span>, location <span class="hljs-built_in">varchar</span>);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span>
+</div></code></pre>
+<pre><code class="language-sql"><div>postgres=% COPY reports FROM 'C:\Temp\Dossiers_Cours\Big_Data_Architectures\tp4\lab_3_dataset\boston-crime-incident-reports-10k.csv' <span class="hljs-keyword">WITH</span> CSV HEADER;
+COPY 9999
+</div></code></pre>
+<p>The <code>CSV HEADER</code> option is used in order to ignore the first line headers.</p>
+<h3 id="2-set-up-postgres-plugin">2. Set up Postgres plugin</h3>
+<pre><code class="language-json"><div>{
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"jdbc"</span>,
+  <span class="hljs-attr">"driver"</span>: <span class="hljs-string">"org.postgresql.Driver"</span>,
+  <span class="hljs-attr">"url"</span>: <span class="hljs-string">"jdbc:postgresql://localhost:5432/reports"</span>,
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"postgres"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"0122"</span>,
+  <span class="hljs-attr">"caseInsensitiveTableNames"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"enabled"</span>: <span class="hljs-literal">true</span>
+}
+</div></code></pre>
+<h3 id="3-run-a-query-to-display-the-content-of-the-dataset">3. Run a query to display the content of the dataset</h3>
+<pre><code class="language-sql"><div>apache drill&gt; <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> psql.public.reports <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+-----------------+--------------+---------------------------------+--------------------------------------------+----------+----------------+----------+---------------------+------+-------+-------------+------+------------+--------------+-------------+--------------+-----------------------------+
+| incident_number | offense_code |       offense_code_group        |            offense_description             | district | reporting_area | shooting |  occurred_on_date   | year | month | day_of_week | hour |  ucr_part  |    street    |     lat     |     long     |          location           |
++-----------------+--------------+---------------------------------+--------------------------------------------+----------+----------------+----------+---------------------+------+-------+-------------+------+------------+--------------+-------------+--------------+-----------------------------+
+| I192078648      | 3114         | Investigate Property            | INVESTIGATE PROPERTY                       | B3       | 427            |          | 2019-09-29 06:39:00 | 2019 | 9     | Sunday      | 6    | Part Three | WILMORE ST   | 42.2779637  | -71.09246318 | (42.27796370, -71.09246318) |
+| I192078647      | 3115         | Investigate Person              | INVESTIGATE PERSON                         | A1       |                |          | 2019-09-29 03:45:00 | 2019 | 9     | Sunday      | 3    | Part Three | NASHUA ST    | 42.36769032 | -71.06586347 | (42.36769032, -71.06586347) |
+| I192078645      | 3301         | Verbal Disputes                 | VERBAL DISPUTE                             | B3       | 450            |          | 2019-09-29 06:00:00 | 2019 | 9     | Sunday      | 6    | Part Three | ASPINWALL RD | 42.2918158  | -71.07244098 | (42.29181580, -71.07244098) |
+| I192078642      | 3820         | Motor Vehicle Accident Response | M/V ACCIDENT INVOLVING PEDESTRIAN - INJURY | D4       | 269            |          | 2019-09-29 05:50:00 | 2019 | 9     | Sunday      | 5    | Part Three | ALBANY ST    |             |              | (0.00000000, 0.00000000)    |
+| I192078640      | 3115         | Investigate Person              | INVESTIGATE PERSON                         | A7       | 28             |          | 2019-09-29 01:30:00 | 2019 | 9     | Sunday      | 1    | Part Three | PARIS ST     | 42.37339168 | -71.03647779 | (42.37339168, -71.03647779) |
++-----------------+--------------+---------------------------------+--------------------------------------------+----------+----------------+----------+---------------------+------+-------+-------------+------+------------+--------------+-------------+--------------+-----------------------------+ 
+5 rows selected (0.303 seconds)
+</div></code></pre>
+<h3 id="4-run-a-query-to-display-the-content-of-boston-offense-codes-lookupcsv-file-in-apache-drillwithout-loading-it-to-postgres">4. Run a query to display the content of <code>boston-offense-codes-lookup.csv</code> file in Apache Drill(without loading it to Postgres).</h3>
+<p>Before start, I've modified the configuration of <code>dfs</code> on the way to read <code>csv</code> files in order to ignore the first HEADER line.</p>
+<pre><code class="language-json"><div><span class="hljs-string">"csv"</span>: {
+      <span class="hljs-attr">"type"</span>: <span class="hljs-string">"text"</span>,
+      <span class="hljs-attr">"extensions"</span>: [
+        <span class="hljs-string">"csv"</span>
+      ],
+      <span class="hljs-attr">"skipFirstLine"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"delimiter"</span>: <span class="hljs-string">","</span>
+    },
+</div></code></pre>
+<p>Here I've added <code>&quot;skipFirstLine&quot;: true</code>
+Then the query</p>
+<pre><code class="language-sql"><div>apache drill&gt; <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">columns</span>[<span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> code, <span class="hljs-keyword">columns</span>[<span class="hljs-number">1</span>] <span class="hljs-keyword">as</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> dfs.<span class="hljs-string">`C:\Temp\Dossiers_Cours\Big_Data_Architectures\tp4\lab_3_dataset\boston-offense-codes-lookup.csv`</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+------+-----------------------------------------+
+| code |                  name                   |
++------+-----------------------------------------+
+| 612  | LARCENY PURSE SNATCH - NO FORCE         |
+| 613  | LARCENY SHOPLIFTING                     |
+| 615  | LARCENY THEFT OF MV PARTS &amp; ACCESSORIES |
+| 1731 | INCEST                                  |
+| 3111 | LICENSE PREMISE VIOLATION               |
++------+-----------------------------------------+
+5 rows selected (0.296 seconds)
+</div></code></pre>
+<h3 id="5-find-all-the-distinct-street-names-mentioned-in-reports-such-that-their-code-name-in-a-lookup-csv-file-contains-%22fire%22-and-they-refer-to-monday">5. Find all the distinct street names mentioned in reports such that their code name in a lookup CSV file contains &quot;FIRE&quot; and they refer to Monday.</h3>
+<p>So here I used two <code>WITH</code> clause to get the two tables stored in different places, and then I have run my query on top of them.</p>
+<pre><code class="language-sql"><div>apache drill&gt; <span class="hljs-keyword">WITH</span> l <span class="hljs-keyword">AS</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">columns</span>[<span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> code, <span class="hljs-keyword">columns</span>[<span class="hljs-number">1</span>] <span class="hljs-keyword">as</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> dfs.<span class="hljs-string">`C:\Temp\Dossiers_Cours\Big_Data_Architectures\tp4\lab_3_dataset\boston-offense-codes-lookup.csv`</span> ), r <span class="hljs-keyword">AS</span> (<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> psql.public.reports) <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> r.street <span class="hljs-keyword">FROM</span> l, r <span class="hljs-keyword">WHERE</span> r.offense_code = l.code <span class="hljs-keyword">AND</span> l.name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'%FIRE%'</span> <span class="hljs-keyword">AND</span> r.day_of_week = <span class="hljs-string">'Monday'</span> <span class="hljs-keyword">AND</span> r.street <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>;
+</div></code></pre>
+<pre><code class="language-bash"><div>+-------------------+
+|      street       |
++-------------------+
+| RIVER ST          |
+| STRATTON ST       |
+| METROPOLITAN AVE  |
+| FAWNDALE RD       |
+| TOVAR ST          |
+| CAMBRIDGE ST      |
+| ROWES WHRF        |
+| MORTON ST         |
+| PARKER ST         |
+| GALLIVAN BLVD     |
+| E INDIA ROW       |
+| BRIGHTON AVE      |
+| ADAMS ST          |
+| HENRY STERLING SQ |
+| CENTRE ST         |
+| DUDLEY ST         |
+| BROOKLINE AVE     |
+| HARRISON AVE      |
+| HAMMOND ST        |
+| WASHINGTON ST     |
+| BEACON ST         |
+| CALLENDER ST      |
+| BORDER ST         |
+| W CONCORD ST      |
+| ATLANTIC AVE      |
+| NEWTON ST         |
+| DALTON ST         |
+| TREMONT ST        |
+| LYFORD ST         |
++-------------------+
+30 rows selected (0.791 seconds)
+</div></code></pre>
+
+    </body>
+    </html>
