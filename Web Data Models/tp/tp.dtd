@@ -1,0 +1,24 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT contributors (contribution)+>
+<!ATTLIST contributors
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT contribution ((text+,status)?,assignedTo?)>
+<!ATTLIST contribution
+  xmlns CDATA #FIXED ''
+  cname NMTOKEN #REQUIRED
+  cname1 NMTOKEN #IMPLIED>
+
+<!ELEMENT text (#PCDATA)>
+<!ATTLIST text
+  xmlns CDATA #FIXED ''
+  date NMTOKEN #REQUIRED>
+
+<!ELEMENT status (#PCDATA)>
+<!ATTLIST status
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT assignedTo (#PCDATA)>
+<!ATTLIST assignedTo
+  xmlns CDATA #FIXED ''>

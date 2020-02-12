@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Semantic Web: Lab 3</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="semantic-web-lab-3">Semantic Web: Lab 3</h1>
+<h3 id="zhang-xin">ZHANG Xin</h3>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#excise-1-owl-api">Excise 1 (OWL API)</a>
+<ul>
+<li><a href="#load-an-existing-ontology-into-java-by-owl-api">Load an existing ontology into Java by OWL API</a></li>
+<li><a href="#get-the-numbers-of-concepts-relations-roles-instances-and-logical-axioms">Get the numbers of concepts, relations (roles), instances and logical axioms</a></li>
+<li><a href="#save-an-ontology-to-a-file-in-a-particular-syntax">Save an ontology to a file in a particular syntax</a></li>
+</ul>
+</li>
+<li><a href="#excise-2-ontology-creation">Excise 2 (Ontology Creation)</a></li>
+<li><a href="#excise-3-ontology-reasoning-by-hermit">Excise 3. (Ontology Reasoning by HermiT)</a>
+<ul>
+<li><a href="#consistency-and-simple-reasoning-tasks">Consistency and simple reasoning tasks</a></li>
+<li><a href="#classification">Classification</a></li>
+</ul>
+</li>
+<li><a href="#excise-4-testing-additional-functionality-of-owl-api">Excise 4. (Testing Additional Functionality of OWL API)</a>
+<ul>
+<li><a href="#profile-validation">Profile Validation</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#modularity">Modularity</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="excise-1-owl-api">Excise 1 (OWL API)</h2>
+<h3 id="load-an-existing-ontology-into-java-by-owl-api">Load an existing ontology into Java by OWL API</h3>
+<p>by using <code>OWLManager</code>:</p>
+<pre><code class="language-java"><div>OWLOntologyManager manager=OWLManager.createOWLOntologyManager();
+OWLDataFactory dataFactory=manager.getOWLDataFactory();
+File inputOntologyFile = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"$FILEPATH$"</span>);
+OWLOntology ontology=manager.loadOntologyFromOntologyDocument(inputOntologyFile);
+</div></code></pre>
+<h3 id="get-the-numbers-of-concepts-relations-roles-instances-and-logical-axioms">Get the numbers of concepts, relations (roles), instances and logical axioms</h3>
+<pre><code class="language-java"><div><span class="hljs-comment">// Number of logical axioms</span>
+System.out.println(ontology.getLogicalAxiomCount());
+<span class="hljs-comment">//Number of concepts (classes)</span>
+System.out.println(ontology.getClassesInSignature().size());
+<span class="hljs-comment">// Number of instances (individuals)</span>
+System.out.println(ontology.getIndividualsInSignature().size());
+<span class="hljs-comment">// Number of relations (roles)</span>
+System.out.println(ontology.getObjectPropertiesInSignature().size());
+</div></code></pre>
+<p>for the file <code>pizza.owl</code>, the output is</p>
+<pre><code class="language-bash"><div>712
+100
+5
+8
+</div></code></pre>
+<h3 id="save-an-ontology-to-a-file-in-a-particular-syntax">Save an ontology to a file in a particular syntax</h3>
+<p>By using the <code>saveOntology()</code> method of the class <code>OWLOntologyManager</code> with the parameter <code>ontologyFormat</code> as the example shown below:</p>
+<pre><code class="language-java"><div>File newOntologyFile=<span class="hljs-keyword">new</span> File(<span class="hljs-string">"examples/ontologies/pizza.fss.owl"</span>);
+<span class="hljs-comment">//create a buffered stream since the ontology manager can then write to that stream. </span>
+newOntologyFile=newOntologyFile.getAbsoluteFile();
+BufferedOutputStream outputStream=<span class="hljs-keyword">new</span> BufferedOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(newOntologyFile));
+<span class="hljs-comment">//save in a particular syntax</span>
+manager.saveOntology(ontology, <span class="hljs-keyword">new</span> OWLFunctionalSyntaxOntologyFormat(), outputStream);
+</div></code></pre>
+<h2 id="excise-2-ontology-creation">Excise 2 (Ontology Creation)</h2>
+<p>So the complete code and outputed file are shown below:</p>
+<pre><code class="language-java"><div><span class="hljs-keyword">package</span> org.semanticweb.HermiT.examples;
+
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.apibinding.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.model.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.util.*;
+<span class="hljs-keyword">import</span> java.io.*;
+<span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OntoCreat</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        IRI ontologyIRI = IRI.create(<span class="hljs-string">"http://university.study/"</span>);
+        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// Create an empty ontology</span>
+            OWLOntology ontology = manager.createOntology(ontologyIRI);
+
+            <span class="hljs-comment">//Create atomic concepts</span>
+            OWLDataFactory factory = manager.getOWLDataFactory();
+            PrefixManager pm = <span class="hljs-keyword">new</span> DefaultPrefixManager(ontologyIRI.toString());
+            OWLClass student = factory.getOWLClass(<span class="hljs-string">":Student"</span>,pm);
+            OWLDeclarationAxiom das = factory.getOWLDeclarationAxiom(student);
+            manager.addAxiom(ontology, das);
+
+            OWLClass researcher = factory.getOWLClass(<span class="hljs-string">":Researcher"</span>,pm);
+            OWLDeclarationAxiom dar = factory.getOWLDeclarationAxiom(researcher);
+            manager.addAxiom(ontology, dar);
+
+            OWLClass enterprise = factory.getOWLClass(<span class="hljs-string">":Enterprise"</span>, pm);
+            OWLDeclarationAxiom dae = factory.getOWLDeclarationAxiom(enterprise);
+            manager.addAxiom(ontology, dae);
+
+            <span class="hljs-comment">//Create individuals / ABox</span>
+            OWLNamedIndividual pierre = factory.getOWLNamedIndividual(<span class="hljs-string">":Pierre"</span>, pm);
+            OWLClassAssertionAxiom cap = factory.getOWLClassAssertionAxiom(student, pierre);
+            manager.addAxiom(ontology,cap);
+
+            OWLNamedIndividual john = factory.getOWLNamedIndividual(<span class="hljs-string">":John"</span>, pm);
+            OWLClassAssertionAxiom caj = factory.getOWLClassAssertionAxiom(student, john);
+            manager.addAxiom(ontology,caj);
+            OWLClassAssertionAxiom cajr = factory.getOWLClassAssertionAxiom(researcher, john);
+            manager.addAxiom(ontology,cajr);
+
+            OWLNamedIndividual ubisoft = factory.getOWLNamedIndividual(<span class="hljs-string">":Ubisoft"</span>, pm);
+            OWLClassAssertionAxiom cau = factory.getOWLClassAssertionAxiom(enterprise, ubisoft);
+            manager.addAxiom(ontology, cau);
+
+            OWLNamedIndividual thales= factory.getOWLNamedIndividual(<span class="hljs-string">":Thales"</span>, pm);
+            OWLClassAssertionAxiom cath = factory.getOWLClassAssertionAxiom(enterprise, thales);
+            manager.addAxiom(ontology, cath);
+
+            <span class="hljs-comment">//Create roles</span>
+            OWLDataProperty hasStudentId = factory.getOWLDataProperty(<span class="hljs-string">":hasStudentId"</span>, pm );
+
+            OWLObjectProperty hasDiploma = factory.getOWLObjectProperty(<span class="hljs-string">":hasDiploma"</span>, pm);
+            OWLIndividual engineering = factory.getOWLNamedIndividual(<span class="hljs-string">":Engineering"</span>, pm);
+            OWLIndividual master = factory.getOWLNamedIndividual(<span class="hljs-string">":Master"</span>, pm);
+            Set&lt;OWLAxiom&gt; diplomas = <span class="hljs-keyword">new</span> HashSet&lt;OWLAxiom&gt;();
+            diplomas.add(factory.getOWLObjectPropertyAssertionAxiom(hasDiploma, pierre ,engineering));
+            diplomas.add(factory.getOWLObjectPropertyAssertionAxiom(hasDiploma, john, master));
+            manager.addAxioms(ontology, diplomas);
+
+            OWLObjectProperty workIn = factory.getOWLObjectProperty(<span class="hljs-string">":WorkIn"</span>, pm);
+
+            <span class="hljs-comment">//ABox</span>
+            OWLObjectPropertyAssertionAxiom aa0 = factory.getOWLObjectPropertyAssertionAxiom(workIn, john, thales);
+            manager.addAxiom(ontology, aa0);
+            OWLDataPropertyAssertionAxiom aa1 = factory.getOWLDataPropertyAssertionAxiom(hasStudentId, john, <span class="hljs-number">12345</span>);
+            manager.addAxiom(ontology, aa1);
+            OWLDataPropertyAssertionAxiom aa2 = factory.getOWLDataPropertyAssertionAxiom(hasStudentId, pierre, <span class="hljs-number">54321</span>);
+            manager.addAxiom(ontology, aa2);
+
+
+            <span class="hljs-comment">//Create complex concepts / TBox</span>
+            OWLClass phd = factory.getOWLClass(<span class="hljs-string">":PhDStudent"</span>, pm);
+            OWLClassExpression phdStudent = factory.getOWLObjectIntersectionOf(student, researcher);
+            OWLAxiom phdDef = factory.getOWLEquivalentClassesAxiom(phd, phdStudent);
+            manager.addAxiom(ontology, phdDef);
+
+            OWLObjectHasValue hasEngineerDegreeRestriction = factory.getOWLObjectHasValue(hasDiploma, engineering);
+            OWLClass eng = factory.getOWLClass(<span class="hljs-string">":Engineer"</span>, pm);
+            OWLClassExpression engStudent = factory.getOWLObjectIntersectionOf(student, hasEngineerDegreeRestriction);
+            OWLAxiom engDef = factory.getOWLEquivalentClassesAxiom(eng, engStudent);
+            manager.addAxiom(ontology, engDef);
+
+            <span class="hljs-comment">//make workIn only can be followed by enterprises and make the property Functional, InverseFunctional, Irreflexive and Asymmetric</span>
+            Set&lt;OWLAxiom&gt; domainsAndRanges = <span class="hljs-keyword">new</span> HashSet&lt;OWLAxiom&gt;();
+            domainsAndRanges.add(factory.getOWLObjectPropertyDomainAxiom(workIn, enterprise));
+            domainsAndRanges.add(factory.getOWLObjectPropertyRangeAxiom(workIn, enterprise));
+            manager.addAxioms(ontology, domainsAndRanges);
+            Set&lt;OWLAxiom&gt; workInAxioms = <span class="hljs-keyword">new</span> HashSet&lt;OWLAxiom&gt;();
+            workInAxioms.add(factory.getOWLFunctionalObjectPropertyAxiom(workIn));
+            workInAxioms.add(factory
+                    .getOWLInverseFunctionalObjectPropertyAxiom(workIn));
+            workInAxioms
+                    .add(factory.getOWLIrreflexiveObjectPropertyAxiom(workIn));
+            workInAxioms.add(factory.getOWLAsymmetricObjectPropertyAxiom(workIn));
+            <span class="hljs-comment">// Add all of the axioms that specify the characteristics of workIn</span>
+            manager.addAxioms(ontology, workInAxioms);
+
+            OWLClass apprentice = factory.getOWLClass(<span class="hljs-string">":Apprentice"</span>, pm);
+            OWLObjectAllValuesFrom workInRestriction = factory.getOWLObjectAllValuesFrom(workIn, enterprise);
+            OWLClassExpression appStu = factory.getOWLObjectIntersectionOf(student, workInRestriction);
+            OWLAxiom appDef = factory.getOWLEquivalentClassesAxiom(apprentice, appStu);
+            manager.addAxiom(ontology, appDef);
+            
+            File file =<span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\Users\\Hsin Chang\\Desktop\\HermiT\\project\\examples\\ontologies\\university.owl"</span>);
+            <span class="hljs-keyword">if</span> (!file.exists())
+                file.createNewFile();
+            file = file.getAbsoluteFile();
+            BufferedOutputStream fileStreamOut = <span class="hljs-keyword">new</span> BufferedOutputStream(<span class="hljs-keyword">new</span> FileOutputStream(file));
+            manager.saveOntology(ontology, fileStreamOut);
+            } <span class="hljs-keyword">catch</span> (OWLOntologyCreationException | IOException | OWLOntologyStorageException e) {
+            e.printStackTrace();
+             }
+         }
+}
+</div></code></pre>
+<p>And the <code>owl</code> file generated:</p>
+<pre><code class="language-xml"><div><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">rdf:RDF</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://university.study/"</span>
+     <span class="hljs-attr">xml:base</span>=<span class="hljs-string">"http://university.study/"</span>
+     <span class="hljs-attr">xmlns:rdf</span>=<span class="hljs-string">"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span>
+     <span class="hljs-attr">xmlns:owl</span>=<span class="hljs-string">"http://www.w3.org/2002/07/owl#"</span>
+     <span class="hljs-attr">xmlns:university</span>=<span class="hljs-string">"http://university.study/"</span>
+     <span class="hljs-attr">xmlns:xsd</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema#"</span>
+     <span class="hljs-attr">xmlns:rdfs</span>=<span class="hljs-string">"http://www.w3.org/2000/01/rdf-schema#"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Ontology</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/"</span>/&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     --&gt;</span>
+
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/WorkIn --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:ObjectProperty</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/WorkIn"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://www.w3.org/2002/07/owl#AsymmetricProperty"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://www.w3.org/2002/07/owl#FunctionalProperty"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://www.w3.org/2002/07/owl#InverseFunctionalProperty"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://www.w3.org/2002/07/owl#IrreflexiveProperty"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdfs:range</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Enterprise"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdfs:domain</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Enterprise"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:ObjectProperty</span>&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/hasDiploma --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:ObjectProperty</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/hasDiploma"</span>/&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     --&gt;</span>
+
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/hasStudentId --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:DatatypeProperty</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/hasStudentId"</span>/&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     --&gt;</span>
+
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Apprentice --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Apprentice"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">owl:equivalentClass</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">owl:intersectionOf</span> <span class="hljs-attr">rdf:parseType</span>=<span class="hljs-string">"Collection"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">rdf:Description</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Student"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Restriction</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">owl:onProperty</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/WorkIn"</span>/&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">owl:allValuesFrom</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Enterprise"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:Restriction</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">owl:intersectionOf</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">owl:Class</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">owl:equivalentClass</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:Class</span>&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Engineer --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Engineer"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">owl:equivalentClass</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">owl:intersectionOf</span> <span class="hljs-attr">rdf:parseType</span>=<span class="hljs-string">"Collection"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">rdf:Description</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Student"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Restriction</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">owl:onProperty</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/hasDiploma"</span>/&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">owl:hasValue</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Engineering"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:Restriction</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">owl:intersectionOf</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">owl:Class</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">owl:equivalentClass</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:Class</span>&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Enterprise --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Enterprise"</span>/&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/PhDStudent --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/PhDStudent"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">owl:equivalentClass</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">owl:intersectionOf</span> <span class="hljs-attr">rdf:parseType</span>=<span class="hljs-string">"Collection"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">rdf:Description</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Researcher"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">rdf:Description</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Student"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">owl:intersectionOf</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">owl:Class</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">owl:equivalentClass</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:Class</span>&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Researcher --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Researcher"</span>/&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Student --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:Class</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Student"</span>/&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     --&gt;</span>
+
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Engineering --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:NamedIndividual</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Engineering"</span>/&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/John --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:NamedIndividual</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/John"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Researcher"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Student"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hasStudentId</span> <span class="hljs-attr">rdf:datatype</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema#integer"</span>&gt;</span>12345<span class="hljs-tag">&lt;/<span class="hljs-name">hasStudentId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hasDiploma</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Master"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">WorkIn</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Thales"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:NamedIndividual</span>&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Master --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:NamedIndividual</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Master"</span>/&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Pierre --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:NamedIndividual</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Pierre"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Student"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hasStudentId</span> <span class="hljs-attr">rdf:datatype</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema#integer"</span>&gt;</span>54321<span class="hljs-tag">&lt;/<span class="hljs-name">hasStudentId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">hasDiploma</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Engineering"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:NamedIndividual</span>&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Thales --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:NamedIndividual</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Thales"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Enterprise"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:NamedIndividual</span>&gt;</span>
+    
+
+
+    <span class="hljs-comment">&lt;!-- http://university.study/Ubisoft --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">owl:NamedIndividual</span> <span class="hljs-attr">rdf:about</span>=<span class="hljs-string">"http://university.study/Ubisoft"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">rdf:type</span> <span class="hljs-attr">rdf:resource</span>=<span class="hljs-string">"http://university.study/Enterprise"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">owl:NamedIndividual</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">rdf:RDF</span>&gt;</span>
+
+
+
+<span class="hljs-comment">&lt;!-- Generated by the OWL API (version 3.4.3) http://owlapi.sourceforge.net --&gt;</span>
+
+
+</div></code></pre>
+<h2 id="excise-3-ontology-reasoning-by-hermit">Excise 3. (Ontology Reasoning by HermiT)</h2>
+<h3 id="consistency-and-simple-reasoning-tasks">Consistency and simple reasoning tasks</h3>
+<pre><code class="language-java"><div><span class="hljs-keyword">package</span> org.semanticweb.HermiT.examples;
+
+<span class="hljs-keyword">import</span> org.semanticweb.HermiT.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.apibinding.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.model.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.reasoner.*;
+
+<span class="hljs-keyword">import</span> java.io.File;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OntoCheck</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-comment">// First, we create an OWLOntologyManager object. The manager will load and</span>
+        <span class="hljs-comment">// save ontologies.</span>
+        OWLOntologyManager manager= OWLManager.createOWLOntologyManager();
+        <span class="hljs-comment">// I will create several things, so we save an instance of the data factory</span>
+        OWLDataFactory dataFactory=manager.getOWLDataFactory();
+        <span class="hljs-comment">// Now, we create the file from which the ontology will be loaded.</span>
+        <span class="hljs-comment">// Here the ontology is stored in a file locally in the ontologies subfolder</span>
+        <span class="hljs-comment">// of the examples folder.</span>
+        File inputOntologyFile = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\Users\\Hsin Chang\\Desktop\\HermiT\\project\\examples\\ontologies\\university.owl"</span>);
+        <span class="hljs-comment">// Use the OWL API to load the ontology.</span>
+        OWLOntology ontology=manager.loadOntologyFromOntologyDocument(inputOntologyFile);
+        
+        Reasoner.ReasonerFactory factory = <span class="hljs-keyword">new</span> Reasoner.ReasonerFactory();
+        <span class="hljs-comment">// I don't want HermiT to thrown an exception for inconsistent ontologies because then we</span>
+        <span class="hljs-comment">// can't explain the inconsistency. This can be controlled via a configuration setting.</span>
+        Configuration configuration=<span class="hljs-keyword">new</span> Configuration();
+        configuration.throwInconsistentOntologyException=<span class="hljs-keyword">false</span>;
+        <span class="hljs-comment">// The factory can now be used to obtain an instance of HermiT as an OWLReasoner.</span>
+        OWLReasoner reasoner=factory.createReasoner(ontology, configuration);
+        reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+
+        <span class="hljs-comment">//Check consistency</span>
+        System.out.println(<span class="hljs-string">"Is the ontology consistent? "</span>+reasoner.isConsistent());
+
+        <span class="hljs-comment">//Some reasoning tasks</span>
+        OWLClassExpression student = manager.getOWLDataFactory().getOWLClass(IRI.create(<span class="hljs-string">"http://university.study/Student"</span>));
+        OWLClassExpression phd = manager.getOWLDataFactory().getOWLClass(IRI.create(<span class="hljs-string">"http://university.study/PhDStudent"</span>));
+        OWLAxiom axiom = manager.getOWLDataFactory().getOWLSubClassOfAxiom(phd, student);
+        System.out.println(<span class="hljs-string">"Is PhDStudetnt subsumed by student? "</span>+reasoner.isEntailed(axiom));
+
+        OWLObjectProperty hasdiploma = manager.getOWLDataFactory().getOWLObjectProperty(IRI.create(<span class="hljs-string">"http://university.study/hasDiploma"</span>));
+        OWLIndividual eng = manager.getOWLDataFactory().getOWLNamedIndividual(IRI.create(<span class="hljs-string">"http://university.study/Engineering"</span>));
+        OWLObjectHasValue hasEngineerDegreeRestriction = manager.getOWLDataFactory().getOWLObjectHasValue(hasdiploma, eng);
+        OWLClassExpression engStu = manager.getOWLDataFactory().getOWLClass(IRI.create(<span class="hljs-string">"http://university.study/Engineer"</span>));
+        OWLAxiom axiom1 = manager.getOWLDataFactory().getOWLSubClassOfAxiom(engStu, hasEngineerDegreeRestriction);
+        System.out.println(<span class="hljs-string">"Are Engineers subsumed by all those who have obtained Enginnering diploma? "</span>+reasoner.isEntailed(axiom1));
+
+
+    }
+}
+
+</div></code></pre>
+<p>Output:</p>
+<pre><code class="language-bash"><div><span class="hljs-string">"C:\Program Files\Java\jdk-11.0.1\bin\java.exe"</span> ...
+Is the ontology consistent? <span class="hljs-literal">true</span>
+Is PhDStudetnt subsumed by student? <span class="hljs-literal">true</span>
+Are Engineers subsumed by all those who have obtained Enginnering diploma? <span class="hljs-literal">true</span>
+
+Process finished with <span class="hljs-built_in">exit</span> code 0
+</div></code></pre>
+<h3 id="classification">Classification</h3>
+<p>Classification means computing the subsumption relations between all concept names in TBoxs.</p>
+<pre><code class="language-java"><div><span class="hljs-comment">//Continued from line 50 of the former file in this Excise</span>
+        <span class="hljs-comment">//Classification</span>
+        System.out.println(<span class="hljs-string">"Number of axioms before classification: "</span> + ontology.getLogicalAxiomCount());
+        List&lt;InferredAxiomGenerator&lt;? extends OWLAxiom&gt;&gt; generators=<span class="hljs-keyword">new</span> ArrayList&lt;InferredAxiomGenerator&lt;? extends OWLAxiom&gt;&gt;();
+        generators.add(<span class="hljs-keyword">new</span> InferredSubClassAxiomGenerator());
+        generators.add(<span class="hljs-keyword">new</span> InferredClassAssertionAxiomGenerator());
+        InferredOntologyGenerator iog=<span class="hljs-keyword">new</span> InferredOntologyGenerator(reasoner,generators);
+        OWLOntology inferredAxiomsOntology=manager.createOntology();
+        iog.fillOntology(manager, inferredAxiomsOntology);
+        System.out.println(<span class="hljs-string">"New axioms from classification: "</span> + inferredAxiomsOntology.getLogicalAxiomCount());
+
+        File inferredOntologyFile=<span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\Users\\Hsin Chang\\Desktop\\HermiT\\project\\examples\\ontologies\\university-inferred.owl"</span>);
+        <span class="hljs-keyword">if</span> (!inferredOntologyFile.exists())
+            inferredOntologyFile.createNewFile();
+        inferredOntologyFile=inferredOntologyFile.getAbsoluteFile();
+        OutputStream outputStream=<span class="hljs-keyword">new</span> FileOutputStream(inferredOntologyFile);
+        manager.saveOntology(inferredAxiomsOntology, manager.getOntologyFormat(ontology), outputStream);
+    
+</div></code></pre>
+<p>result:</p>
+<pre><code class="language-bash"><div>Number of axioms before classification: 19
+New axioms from classification: 25
+</div></code></pre>
+<h2 id="excise-4-testing-additional-functionality-of-owl-api">Excise 4. (Testing Additional Functionality of OWL API)</h2>
+<h3 id="profile-validation">Profile Validation</h3>
+<p>Tested on the ontology created in exercise 2.</p>
+<pre><code class="language-java"><div><span class="hljs-keyword">package</span> org.semanticweb.HermiT.examples;
+
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.apibinding.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.model.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.profiles.OWL2DLProfile;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.profiles.OWLProfileReport;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.profiles.OWLProfileViolation;
+
+<span class="hljs-keyword">import</span> java.io.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">owlProfileValidation</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        OWLOntologyManager manager= OWLManager.createOWLOntologyManager();
+        <span class="hljs-comment">// I will create several things, so we save an instance of the data factory</span>
+        OWLDataFactory dataFactory=manager.getOWLDataFactory();
+        <span class="hljs-comment">// Now, we create the file from which the ontology will be loaded.</span>
+        <span class="hljs-comment">// Here the ontology is stored in a file locally in the ontologies subfolder</span>
+        <span class="hljs-comment">// of the examples folder.</span>
+        File inputOntologyFile = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\Users\\Hsin Chang\\Desktop\\HermiT\\project\\examples\\ontologies\\university.owl"</span>);
+        <span class="hljs-comment">// Use the OWL API to load the ontology.</span>
+        OWLOntology ontology=manager.loadOntologyFromOntologyDocument(inputOntologyFile);
+
+        <span class="hljs-comment">//Profile validation</span>
+        OWL2DLProfile profile = <span class="hljs-keyword">new</span> OWL2DLProfile();
+        OWLProfileReport report = profile.checkOntology(ontology);
+        <span class="hljs-comment">//If there is no violations, the ontology is valid without profile violations</span>
+        <span class="hljs-keyword">if</span>(report.getViolations().isEmpty()){
+            System.out.println(<span class="hljs-string">"The ontology is valid without profile violations."</span>);
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">for</span> (OWLProfileViolation v : report.getViolations()) {
+                System.out.println(v);
+            }
+        }
+    }
+}
+
+</div></code></pre>
+<p>Output:</p>
+<pre><code class="language-bash"><div>The profile is valid without violations.
+
+Process finished with <span class="hljs-built_in">exit</span> code 0
+</div></code></pre>
+<h3 id="explanation">Explanation</h3>
+<p>The test is run with a newly created class <code>Dummy</code>, we will make it a subclass of <code>Phd Student</code>, but disjoint with <code>Student</code>, therefore it will be unsatisfiable.</p>
+<pre><code class="language-java"><div><span class="hljs-keyword">package</span> org.semanticweb.HermiT.examples;
+
+<span class="hljs-keyword">import</span> java.io.File;
+<span class="hljs-keyword">import</span> java.util.Set;
+
+<span class="hljs-keyword">import</span> org.semanticweb.HermiT.Configuration;
+<span class="hljs-keyword">import</span> org.semanticweb.HermiT.Reasoner.ReasonerFactory;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.apibinding.OWLManager;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.model.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.reasoner.OWLReasoner;
+
+<span class="hljs-keyword">import</span> com.clarkparsia.owlapi.explanation.BlackBoxExplanation;
+<span class="hljs-keyword">import</span> com.clarkparsia.owlapi.explanation.HSTExplanationGenerator;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.util.DefaultPrefixManager;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Explanations</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        OWLOntologyManager manager=OWLManager.createOWLOntologyManager();
+        OWLDataFactory dataFactory=manager.getOWLDataFactory();
+
+        File inputOntologyFile = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\Users\\Hsin Chang\\Desktop\\HermiT\\project\\examples\\ontologies\\university.owl"</span>);
+        OWLOntology ontology=manager.loadOntologyFromOntologyDocument(inputOntologyFile);
+
+        <span class="hljs-comment">// We will firstly create an unsatisfiable class "Dummy" in the ontology</span>
+        OWLDataFactory dFactory = manager.getOWLDataFactory();
+        IRI ontologyIRI = IRI.create(<span class="hljs-string">"http://university.study/"</span>);
+        PrefixManager pm = <span class="hljs-keyword">new</span> DefaultPrefixManager(ontologyIRI.toString());
+        OWLClassExpression student = manager.getOWLDataFactory().getOWLClass(IRI.create(<span class="hljs-string">"http://university.study/Student"</span>));
+        OWLClassExpression phd = manager.getOWLDataFactory().getOWLClass(IRI.create(<span class="hljs-string">"http://university.study/PhDStudent"</span>));
+        OWLClass dummy = dFactory.getOWLClass(<span class="hljs-string">":Dummy"</span>,pm);
+        OWLDeclarationAxiom das = dFactory.getOWLDeclarationAxiom(dummy);
+        manager.addAxiom(ontology, das);
+        OWLAxiom dummyExp = dFactory.getOWLSubClassOfAxiom(dummy,phd);
+        manager.addAxiom(ontology, dummyExp);
+        OWLAxiom dummyX = dFactory.getOWLDisjointClassesAxiom(dummy, student);
+        manager.addAxiom(ontology, dummyX);
+
+        <span class="hljs-comment">//Then we test and run the explanation</span>
+        IRI classIRI=IRI.create(<span class="hljs-string">"http://university.study/Dummy"</span>);
+        OWLClass class_test =dataFactory.getOWLClass(classIRI);
+        ReasonerFactory factory = <span class="hljs-keyword">new</span> ReasonerFactory();
+        Configuration configuration=<span class="hljs-keyword">new</span> Configuration();
+        configuration.throwInconsistentOntologyException=<span class="hljs-keyword">false</span>;
+        OWLReasoner reasoner=factory.createReasoner(ontology, configuration);
+        System.out.println(<span class="hljs-string">"Is Dummy satisfiable? "</span>+reasoner.isSatisfiable(class_test));
+        System.out.println(<span class="hljs-string">"Computing explanations..."</span>);
+        BlackBoxExplanation exp=<span class="hljs-keyword">new</span> BlackBoxExplanation(ontology, factory, reasoner);
+        HSTExplanationGenerator multExplanator=<span class="hljs-keyword">new</span> HSTExplanationGenerator(exp);
+        Set&lt;Set&lt;OWLAxiom&gt;&gt; explanations=multExplanator.getExplanations(class_test);
+        <span class="hljs-keyword">for</span> (Set&lt;OWLAxiom&gt; explanation : explanations) {
+            System.out.println(<span class="hljs-string">"------------------"</span>);
+            System.out.println(<span class="hljs-string">"Axioms causing the unsatisfiability: "</span>);
+            <span class="hljs-keyword">for</span> (OWLAxiom causingAxiom : explanation) {
+                System.out.println(causingAxiom);
+            }
+            System.out.println(<span class="hljs-string">"------------------"</span>);
+        }
+    }
+}
+</div></code></pre>
+<p>Output</p>
+<pre><code class="language-bash"><div>Is Dummy satisfiable? <span class="hljs-literal">false</span>
+Computing explanations...
+------------------
+Axioms causing the unsatisfiability: 
+SubClassOf(&lt;http://university.study/Dummy&gt; &lt;http://university.study/PhDStudent&gt;)
+EquivalentClasses(&lt;http://university.study/PhDStudent&gt; ObjectIntersectionOf(&lt;http://university.study/Researcher&gt; &lt;http://university.study/Student&gt;) )
+DisjointClasses(&lt;http://university.study/Dummy&gt; &lt;http://university.study/Student&gt;)
+------------------
+
+Process finished with <span class="hljs-built_in">exit</span> code 0
+</div></code></pre>
+<h3 id="modularity">Modularity</h3>
+<pre><code class="language-java"><div><span class="hljs-keyword">package</span> org.semanticweb.HermiT.examples;
+
+<span class="hljs-keyword">import</span> org.semanticweb.HermiT.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.apibinding.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.model.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.reasoner.*;
+<span class="hljs-keyword">import</span> org.semanticweb.owlapi.util.*;
+<span class="hljs-keyword">import</span> uk.ac.manchester.cs.owlapi.modularity.*;
+
+<span class="hljs-keyword">import</span> java.io.File;
+<span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">owlModula</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        IRI ontologyIRI = IRI.create(<span class="hljs-string">"http://university.study/"</span>);
+        OWLOntologyManager manager=OWLManager.createOWLOntologyManager();
+        OWLDataFactory dataFactory=manager.getOWLDataFactory();
+        File inputOntologyFile = <span class="hljs-keyword">new</span> File(<span class="hljs-string">"C:\\Users\\Hsin Chang\\Desktop\\HermiT\\project\\examples\\ontologies\\university.owl"</span>);
+        OWLOntology ontology=manager.loadOntologyFromOntologyDocument(inputOntologyFile);
+
+    <span class="hljs-comment">// extract a module for Student</span>
+    <span class="hljs-comment">// start by creating a signature "Student"</span>
+        OWLClass student = dataFactory.getOWLClass(IRI.create(ontology + <span class="hljs-string">"Student"</span>));
+<span class="hljs-comment">// We now add all subclasses of the chosen classes.</span>
+        Set&lt;OWLEntity&gt; seedSig = <span class="hljs-keyword">new</span> HashSet&lt;OWLEntity&gt;();
+
+        Reasoner.ReasonerFactory factory = <span class="hljs-keyword">new</span> Reasoner.ReasonerFactory();
+        Configuration configuration=<span class="hljs-keyword">new</span> Configuration();
+        configuration.throwInconsistentOntologyException=<span class="hljs-keyword">false</span>;
+        OWLReasoner reasoner=factory.createReasoner(ontology, configuration);
+
+        Set&lt;OWLEntity&gt; sig = <span class="hljs-keyword">new</span> HashSet&lt;OWLEntity&gt;();
+        sig.add(student);
+        <span class="hljs-keyword">for</span> (OWLEntity ent : sig) {
+            seedSig.add(ent);
+            <span class="hljs-keyword">if</span> (ent.isOWLClass()) {
+                NodeSet&lt;OWLClass&gt; subClasses = reasoner.getSubClasses(ent.asOWLClass(),<span class="hljs-keyword">false</span>);
+                seedSig.addAll(subClasses.getFlattened());
+            }
+        }
+        <span class="hljs-comment">// Extract a locality-based module</span>
+        SyntacticLocalityModuleExtractor sme = <span class="hljs-keyword">new</span> SyntacticLocalityModuleExtractor(manager, ontology, ModuleType.STAR);
+        Set&lt;OWLAxiom&gt; mod = sme.extract(seedSig);
+        System.out.println(<span class="hljs-string">"The module of Student is"</span>);
+        System.out.println(mod);
+        System.out.println(<span class="hljs-string">"Module size "</span>+ mod.size());
+
+    }
+}
+</div></code></pre>
+<p>Output</p>
+<pre><code class="language-bash"><div>The module of Student is
+[IrreflexiveObjectProperty(&lt;http://university.study/WorkIn&gt;), Declaration(ObjectProperty(&lt;http://university.study/WorkIn&gt;)), ObjectPropertyAssertion(&lt;http://university.study/WorkIn&gt; &lt;http://university.study/John&gt; &lt;http://university.study/Thales&gt;), Declaration(NamedIndividual(&lt;http://university.study/Thales&gt;)), AsymmetricObjectProperty(&lt;http://university.study/WorkIn&gt;), InverseFunctionalObjectProperty(&lt;http://university.study/WorkIn&gt;), Declaration(NamedIndividual(&lt;http://university.study/John&gt;)), FunctionalObjectProperty(&lt;http://university.study/WorkIn&gt;)]
+Module size 8
+
+Process finished with <span class="hljs-built_in">exit</span> code 0
+</div></code></pre>
+
+    </body>
+    </html>
